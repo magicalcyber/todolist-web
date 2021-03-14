@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TODO List</title>
+
+<link rel="stylesheet"
+	href="/webjars/materializecss/css/materialize.min.css">
+
+</head>
+<body>
+
+	<div class="container">
+		<h1>TODO List</h1>
+		<div>
+			<div class="input-field col">
+				<input id="todo" type="text">
+				<label for="todo">TODO</label>
+			</div>
+			<input type="button" id="add-todo" value="Add Todo"
+			th:onclick="createTodo()" />
+		</div>
+		<ul id="todo-list">
+			<li th:each="todo : ${todos}">
+				<label>
+					<input type="checkbox" th:checked="${todo.complete}"
+						th:onclick="completeTodo(this, '[(${todo.id})]')" />
+					<span th:text="${todo.todo}"></span>
+				</label>
+			</li>
+		</ul>
+	</div>
+
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/materializecss/js/materialize.min.js"></script>
+	<script th:src="@{/index.js}"></script>
+</body>
+</html>
